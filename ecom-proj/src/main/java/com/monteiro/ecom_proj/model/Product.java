@@ -1,6 +1,8 @@
 package com.monteiro.ecom_proj.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +20,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Product {
     @Id //primary key
+    @GeneratedValue(stratergy = GenerationType.IDENTITY) //TO GENERATE ID BY BY THE DB
     private int id;
     private String name;
     private String descp;
