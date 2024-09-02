@@ -19,6 +19,7 @@ public class ProductService  {
     }
 
     public Product getProductById(int id){
-        return repo.findById(id).orElse(new Product());
+        //return repo.findById(id).orElse(new Product());// to return a product with null fields
+        return repo.findById(id).orElse(null); //to return null
     }
 }
