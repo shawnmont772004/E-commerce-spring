@@ -20,7 +20,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Product {
     @Id //primary key
-    @GeneratedValue(stratergy = GenerationType.IDENTITY) //TO GENERATE ID BY BY THE DB
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //TO GENERATE ID BY BY THE DB
     private int id;
     private String name;
     private String descp;
