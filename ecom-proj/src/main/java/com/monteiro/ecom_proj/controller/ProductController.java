@@ -29,11 +29,11 @@ public class ProductController {
         //return service.getAllProducts();
         //to return the response along with data and http status code
         return new ResponseEntity<>(service.getAllProducts(), HttpStatus.OK);//create a ResponseEntity object
-        //and then pass a call to service and httpstatus
+        //and then pass a call to service and http status
     }
 
     @GetMapping("/product/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable int id){
-        return new ResponseEntity<>(service.getProductById(id),Https.OK);
+        return new ResponseEntity<>(service.getProductById(id),HttpStatus.OK);
     }
 }
