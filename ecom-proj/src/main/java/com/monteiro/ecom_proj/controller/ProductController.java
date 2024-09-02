@@ -4,6 +4,8 @@ import com.monteiro.ecom_proj.model.Product;
 import com.monteiro.ecom_proj.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +25,15 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<Product> getAllProducts(){
-        return service.getAllProducts();
+    public ResponseEntity<List<Product>> getAllProducts(){
+        //return service.getAllProducts();
+        //to return the response along with data and http status code
+        return new ResponseEntity<>(service.getAllProducts(), HttpStatus.OK);//create a ResponseEntity object
+        //and then pass a call to service and httpstatus
     }
 
     @GetMapping("/product/{id}")
-    public Product getProduct(@PathVariable int id){
-        return service.getProductById(id);
+    public ResponseEntity<Product> getProduct(@PathVariable int id){
+        return new ResponseEntity<>(service.getProductById(id),Https.OK);
     }
 }
