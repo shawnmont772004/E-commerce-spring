@@ -1,5 +1,6 @@
 package com.monteiro.ecom_proj.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class Product {
     private String category;
     private boolean avail;
     private int qty;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-mm-yyyy")
     private Date releasedate;
 
 }
