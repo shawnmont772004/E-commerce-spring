@@ -17,4 +17,8 @@ public class ProductService  {
     public  List<Product> getAllProducts() {
         return repo.findAll(); //method from Jpa repo
     }
+
+    public Product getProductById(int id){
+        return repo.findById(id).orElse(new Product());
+    }
 }
