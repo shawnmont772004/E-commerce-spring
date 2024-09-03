@@ -21,28 +21,28 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //TO GENERATE ID BY BY THE DB
     private int id;
     private String name;
-    private String descp;
+    private String description;
     private BigDecimal price;
     private String category;
-    private boolean avail;
-    private int qty;
+    private boolean productavailable;
+    private int stockquantity;
     //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy") //conversion is done in frontend i.e react. if not specified use this code
     private Date releasedate;
 
-    private String imgName;
-    private String imgType;
+    private String imageName;
+    private String imageType;
     @Lob //when working with large objects
     private byte[] imageDate;
 
     private String brand;
 
     //manually generating setters as lombok is not configured properly. Issue will be resolved later
-    public void setImgName(String imgName) {
-        this.imgName = imgName;
+    public void setImgName(String imageName) {
+        this.imageName = imageName;
     }
 
-    public void setImgType(String imgType) {
-        this.imgType = imgType;
+    public void setImgType(String imageType) {
+        this.imageType = imageType;
     }
 
     public void setImageDate(byte[] imageDate) {
