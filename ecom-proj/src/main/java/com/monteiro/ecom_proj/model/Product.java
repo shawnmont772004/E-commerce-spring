@@ -36,4 +36,18 @@ public class Product {
 
     private String brand;
 
+    //manually generating setters as lombok is not configured properly. Issue will be resolved later
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
+    }
+
+    public void setImgType(String imgType) {
+        this.imgType = imgType;
+    }
+
+    public void setImageDate(byte[] imageDate) {
+        this.imageDate = imageDate;
+    }
+
+
 }
