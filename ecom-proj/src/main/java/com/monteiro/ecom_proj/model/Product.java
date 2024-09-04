@@ -1,6 +1,7 @@
 package com.monteiro.ecom_proj.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,5 +50,11 @@ public class Product {
         this.imageDate = imageDate;
     }
 
+    public byte[] getImageDate() {
+        return this.imageDate;
+    }
 
+    public String getImageType() {
+        return this.imageType;
+    }
 }

@@ -26,10 +26,14 @@ public class ProductService  {
     }
 
     public Product addProduct(Product product, MultipartFile imageFile) throws IOException {
-        product.setImgName(imageFile.getOriginalFilename());
-        product.setImgType(imageFile.getContentType());
-        product.setImageDate(imageFile.getBytes());
+        if (imageFile != null && !imageFile.isEmpty()) {
+            product.setImgName(imageFile.getOriginalFilename());
+            product.setImgType(imageFile.getContentType());  // Set the MIME type
+            product.setImageDate(imageFile.getBytes());
+        } else {
+            throw new IllegalArgumentException("Image file must not be null or empty");
+        }
         return repo.save(product);
-        //but we also need to save image
     }
+
 }

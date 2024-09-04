@@ -5,15 +5,17 @@ import com.monteiro.ecom_proj.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.print.attribute.standard.Media;
 import java.util.List;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api")
 public class ProductController {
 
@@ -47,14 +49,31 @@ public class ProductController {
 
     //to add product we use post, also if no img is added then @RequestBody  was enough but we also use reqpart as img is added
     @PostMapping("/product")
-    public ResponseEntity<?> addProduct(@RequestPart Product product,
-                                              @RequestPart MultipartFile imageFile){
-           try{
-               Product prod = service.addProduct(product,imageFile);
-               return new ResponseEntity<>(prod,HttpStatus.OK);
-           }
-           catch(Exception e){
-               return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-           }
+    public ResponseEntity<?> addProduct(
+            @RequestPart Product product,
+            @RequestPart(required = false) MultipartFile imageFile) {
+        try {
+            Product prod = service.addProduct(product, imageFile);
+            return new ResponseEntity<>(prod, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+
+    @GetMapping("/product/{productId}/image")
+    public ResponseEntity<byte[]> getImageByProductId(@PathVariable int productId) {
+        Product product = service.getProductById(productId);
+        if (product == null || product.getImageDate() == null || product.getImageType() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Return 404 if image or MIME type is missing
+        }
+
+        byte[] imageFile=product.getImageDate();
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.valueOf(product.getImageType()))
+                .body(imageFile);
+    }
+
 }
